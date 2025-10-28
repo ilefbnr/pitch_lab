@@ -1,12 +1,21 @@
 # Ignore everything by default
 *
 
-# Keep these
-!/.gitignore
-!/README.md
-!/auth_back/**
-!/backend_Pitch/**
-!/vocal-aid-pro/**
+# Ignore everything by default
+*
+
+# But include these specific folders and files
+!auth_back/
+!backend_Pitch/
+!vocal-aid-pro/
+!README.md
+!.gitignore
+
+# Make sure Git tracks subfiles
+!auth_back/**
+!backend_Pitch/**
+!vocal-aid-pro/**
+
 
 # Still ignore heavy stuff inside allowed folders
 auth_back/.venv/
