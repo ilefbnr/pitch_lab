@@ -1,0 +1,29 @@
+# Ignore everything by default
+*
+
+# Keep these
+!/.gitignore
+!/README.md
+!/auth_back/**
+!/backend_Pitch/**
+!/vocal-aid-pro/**
+
+# Still ignore heavy stuff inside allowed folders
+auth_back/.venv/
+auth_back/venv/
+auth_back/__pycache__/
+auth_back/.env
+auth_back/uploads/
+auth_back/models/
+
+backend_Pitch/.venv/
+backend_Pitch/venv/
+backend_Pitch/__pycache__/
+backend_Pitch/.env
+backend_Pitch/uploads/
+backend_Pitch/models/
+
+vocal-aid-pro/node_modules/
+vocal-aid-pro/dist/
+vocal-aid-pro/.env
+vocal-aid-pro/.vite/
