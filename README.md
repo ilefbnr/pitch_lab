@@ -10,6 +10,7 @@ Record, analyze, and perfect your business pitches with AI-powered insights. Inc
 - `vocal-aid-pro/` — React + Vite frontend (Tabs: Record, Real-time, Video, My Pitches)
 - `backend_Pitch/` — FastAPI backend (primary API used by the app)
 - `models/` — Local ML models (Vosk, etc., gitignored)
+- FastAPI, Vosk, Whisper, librosa, React/Vite, and related open-source projects.
 
 ## Requirements
 
@@ -153,3 +154,67 @@ MIT (update as needed).
 ## Acknowledgments
 
 - FastAPI, Vosk, Whisper, librosa, React/Vite, and related open-source projects.
+
+## Auth service (auth_back) — Node server
+
+Run a separate Node.js auth API for signup/login and tokens.
+
+Prerequisites
+- Node.js 18+ and npm
+
+Setup
+```powershell
+cd "C:\Users\ilefb\OneDrive\Bureau\pitch lab\auth_back"
+npm install
+```
+
+Environment (create .env)
+```env
+# auth_back/.env
+PORT=3001
+JWT_SECRET=dev_change_me
+CORS_ORIGIN=http://localhost:5173
+# Optional DB (SQLite example)
+DATABASE_URL=file:./auth.db
+```
+
+Start (development)
+```powershell
+cd "C:\Users\ilefb\OneDrive\Bureau\pitch lab\auth_back"
+# if no .env loader, set inline for this shell:
+$env:PORT="3001"; $env:JWT_SECRET="dev_change_me"; $env:CORS_ORIGIN="http://localhost:5173"
+npm run dev
+# or
+npm start
+```
+
+Test
+```powershell
+curl http://localhost:3001/health
+# typical routes (adjust to your implementation)
+# POST http://localhost:3001/auth/register
+# POST http://localhost:3001/auth/login
+```
+
+Frontend integration
+- Set in vocal-aid-pro:
+```powershell
+# vocal-aid-pro/.env
+VITE_API_URL=http://localhost:8000
+VITE_AUTH_URL=http://localhost:3001
+```
+- Restart Vite: `npm run dev` and ensure CORS in auth_back allows `http://localhost:5173`.
+
+Backend integration (optional)
+- If backend_Pitch verifies JWTs, point it to auth service or share the same JWT_SECRET:
+```powershell
+# backend_Pitch/.env
+JWT_SECRET=dev_change_me
+AUTH_BASE_URL=http://localhost:3001
+```
+
+Run everything (two terminals)
+- Terminal 1: backend_Pitch → `uvicorn main:app --reload --port 8000`
+- Terminal 2: auth_back → `npm run dev`
+- Terminal 3: vocal-aid-pro → `npm run dev`
+```
