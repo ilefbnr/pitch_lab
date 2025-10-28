@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite*
+.venv/
+venv/
+env/
+
+# FastAPI uploads and ML models (keep local)
+uploads/
+models/
+*.pt
+*.bin
+
+# Node/Vite
+node_modules/
+dist/
+build/
+.vite/
+
+# Env/config
+.env
+.env.*
+*.log
+
+# VS Code
+.vscode/
